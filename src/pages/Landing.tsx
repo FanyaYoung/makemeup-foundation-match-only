@@ -12,14 +12,14 @@ const Landing = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-12 lg:py-20">
+      <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-rose-50/50 via-pink-50/30 to-purple-50/50" />
         
         <div className="container mx-auto px-4 relative">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Hero Image - Full height on mobile */}
-            <div className="relative order-1 lg:order-2 flex justify-center">
-              <div className="relative w-64 h-80 lg:w-80 lg:h-96 rounded-2xl overflow-hidden shadow-xl">
+          <div className="grid lg:grid-cols-5 gap-12 items-center">
+            {/* Hero Image */}
+            <div className="relative order-1 lg:order-2 lg:col-span-2 flex justify-center">
+              <div className="relative w-56 h-72 lg:w-72 lg:h-80 rounded-2xl overflow-hidden shadow-xl">
                 <ImageSlideshow
                   images={[
                     '/lovable-uploads/efce4647-6298-4ee0-a79a-919451a96f45.png',
@@ -27,14 +27,13 @@ const Landing = () => {
                     '/lovable-uploads/a68d3215-f709-4f7d-8787-82bf8d454614.png'
                   ]}
                   duration={15000}
-                  className="w-full h-full object-cover"
+                  className="w-full h-[130%] object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
             
             {/* Hero Content */}
-            <div className="space-y-6 order-2 lg:order-1">
+            <div className="space-y-6 order-2 lg:order-1 lg:col-span-3">
               <div className="inline-block">
                 <Badge className="text-sm px-4 py-2 bg-gradient-to-r from-rose-500 to-purple-500 text-white border-0">
                   AI-Powered Matching
