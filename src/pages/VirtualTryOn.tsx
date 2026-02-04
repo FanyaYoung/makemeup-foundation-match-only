@@ -119,12 +119,12 @@ const VirtualTryOn = () => {
     setIsAnalyzing(true);
     try {
       const { data, error } = await supabase.functions.invoke('analyze-skin-tone', {
-        body: { image: capturedImage }
+        body: { imageBase64: capturedImage, analysisType: 'image' }
       });
 
       if (error) throw error;
 
-      const { lightestHex, darkestHex } = data;
+      const { lightest_hex: lightestHex, darkest_hex: darkestHex } = data;
       
       // Load CSV and find new matches
       const response = await fetch('/data/allShades.csv');
