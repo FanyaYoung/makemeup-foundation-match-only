@@ -169,9 +169,10 @@ serve(async (req) => {
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error in bulk-gcs-import function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
@@ -301,8 +302,9 @@ function parseCSVWithMapping(csvContent: string, tableConfig: any): any[] {
         records.push(record);
       }
       
-    } catch (error) {
-      console.warn(`Error parsing line ${i}: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.warn(`Error parsing line ${i}: ${errorMessage}`);
     }
   }
   

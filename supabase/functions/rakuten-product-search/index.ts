@@ -12,8 +12,6 @@ serve(async (req) => {
 
   try {
     const { keywords, brand, productName, limit = 20 } = await req.json();
-    
-    const rakutenToken = Deno.env.get('RAKUTEN_ADVERTISING_TOKEN');
 
     // Build search keyword
     let searchKeyword = keywords || `${brand} ${productName} foundation makeup`;

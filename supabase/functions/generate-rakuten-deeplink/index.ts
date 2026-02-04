@@ -80,12 +80,12 @@ serve(async (req) => {
       }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error generating deep link:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(
       JSON.stringify({ 
-        error: error.message,
-        fallbackUrl: req.body?.productUrl // Return original URL as fallback
+        error: errorMessage
       }),
       { 
         headers: { 
