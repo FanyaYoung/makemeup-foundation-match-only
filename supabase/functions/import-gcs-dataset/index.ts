@@ -83,9 +83,10 @@ serve(async (req) => {
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error in import-gcs-dataset function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
@@ -236,8 +237,9 @@ function parseCSVToProducts(csvContent: string, datasetName: string): CosmeticsP
       if (product.brand && product.product_name) {
         products.push(product);
       }
-    } catch (error) {
-      console.warn(`Error parsing line ${i}: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.warn(`Error parsing line ${i}: ${errorMessage}`);
     }
   }
   

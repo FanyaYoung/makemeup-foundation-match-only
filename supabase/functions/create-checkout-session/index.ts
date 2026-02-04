@@ -123,6 +123,11 @@ serve(async (req) => {
           product_data: {
             name: `${checkoutData.fulfillment_method || 'Shipping'} Fee`,
             description: 'Fulfillment service fee',
+            metadata: {
+              product_id: 'fulfillment',
+              shade_name: 'N/A',
+              selected_shade: 'primary' as const,
+            },
           },
           unit_amount: Math.round(checkoutData.fulfillment_price * 100),
         },

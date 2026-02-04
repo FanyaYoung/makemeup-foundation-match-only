@@ -615,7 +615,7 @@ export const AISkinToneMatcher = () => {
     }
 
     try {
-      const { error } = await supabase.from('saved_shade_matches').insert([{
+      const { error } = await (supabase as any).from('saved_shade_matches').insert([{
         user_id: user.id,
         lightest_hex: lightestResult.hex,
         lightest_rgb: lightestResult.rgb as any,

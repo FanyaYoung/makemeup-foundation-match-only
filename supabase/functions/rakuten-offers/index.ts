@@ -214,8 +214,8 @@ serve(async (req) => {
       }
       if (keywords) {
         const keywordList = keywords.split(',').map((k: string) => k.trim().toLowerCase());
-        offers = offers.filter(offer =>
-          keywordList.some(keyword => 
+        offers = offers.filter((offer: { name: string; description: string; category: string }) =>
+          keywordList.some((keyword: string) => 
             offer.name.toLowerCase().includes(keyword) ||
             offer.description.toLowerCase().includes(keyword) ||
             offer.category.toLowerCase().includes(keyword)

@@ -116,7 +116,7 @@ serve(async (req) => {
         limit: 10,
       });
       
-      const oneTimeSession = sessions.data.find(session => 
+      const oneTimeSession = sessions.data.find((session: { mode: string; payment_status: string; amount_total: number }) => 
         session.mode === 'payment' && 
         session.payment_status === 'paid' &&
         session.amount_total === 200 // $2.00

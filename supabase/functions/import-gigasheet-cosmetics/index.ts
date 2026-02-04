@@ -89,12 +89,13 @@ serve(async (req) => {
       },
     )
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Import error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message
+        error: errorMessage
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -207,7 +208,7 @@ async function importProductsToDatabase(supabase: any, products: CosmeticsProduc
           brandId = newBrand.id
         }
         
-        brandCache.set(brandName, brandId)
+        if (brandId) brandCache.set(brandName, brandId)
       }
 
       // Update products with brand_id

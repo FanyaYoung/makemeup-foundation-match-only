@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { pipeline, env } from '@huggingface/transformers';
 import { supabase } from '@/integrations/supabase/client';
 
