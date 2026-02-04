@@ -35,7 +35,7 @@ const Header = () => {
             <Link to="/" className="text-gray-600 hover:text-rose-600 transition-colors font-medium">Home</Link>
             <Link to="/shade-matcher" className="text-gray-600 hover:text-rose-600 transition-colors font-medium flex items-center gap-1">
               <Palette className="w-4 h-4" />
-              AI Shade Match
+              Find Your Match
             </Link>
             <Link to="/virtual-tryon" className="text-gray-600 hover:text-rose-600 transition-colors font-medium flex items-center gap-1">
               <Sparkles className="w-4 h-4" />
@@ -43,7 +43,7 @@ const Header = () => {
             </Link>
             <Link to="/products" className="text-gray-600 hover:text-rose-600 transition-colors font-medium flex items-center gap-1">
               <Package className="w-4 h-4" />
-              Browse Products
+              Browse Foundations
             </Link>
             
             {/* Cart Icon */}
