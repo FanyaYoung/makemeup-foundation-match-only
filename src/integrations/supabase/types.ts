@@ -14,7 +14,269 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      brands: {
+        Row: {
+          created_at: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          website_url: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          website_url?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      face_regions: {
+        Row: {
+          avg_rgb_values: Json | null
+          confidence_score: number | null
+          created_at: string | null
+          depth_level: number | null
+          hex_color: string | null
+          id: string
+          region_name: string | null
+          session_id: string | null
+          undertone: string | null
+        }
+        Insert: {
+          avg_rgb_values?: Json | null
+          confidence_score?: number | null
+          created_at?: string | null
+          depth_level?: number | null
+          hex_color?: string | null
+          id?: string
+          region_name?: string | null
+          session_id?: string | null
+          undertone?: string | null
+        }
+        Update: {
+          avg_rgb_values?: Json | null
+          confidence_score?: number | null
+          created_at?: string | null
+          depth_level?: number | null
+          hex_color?: string | null
+          id?: string
+          region_name?: string | null
+          session_id?: string | null
+          undertone?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "face_regions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "scan_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foundation_matches: {
+        Row: {
+          confidence_score: number | null
+          created_at: string | null
+          delta_e_value: number | null
+          id: string
+          match_type: string | null
+          price: number | null
+          product_id: string | null
+          purchase_url: string | null
+          session_id: string | null
+          shade_id: string | null
+        }
+        Insert: {
+          confidence_score?: number | null
+          created_at?: string | null
+          delta_e_value?: number | null
+          id?: string
+          match_type?: string | null
+          price?: number | null
+          product_id?: string | null
+          purchase_url?: string | null
+          session_id?: string | null
+          shade_id?: string | null
+        }
+        Update: {
+          confidence_score?: number | null
+          created_at?: string | null
+          delta_e_value?: number | null
+          id?: string
+          match_type?: string | null
+          price?: number | null
+          product_id?: string | null
+          purchase_url?: string | null
+          session_id?: string | null
+          shade_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "foundation_matches_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "scan_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foundation_products: {
+        Row: {
+          brand_id: string | null
+          coverage: string | null
+          created_at: string | null
+          finish: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          name: string
+          price: number | null
+          product_url: string | null
+        }
+        Insert: {
+          brand_id?: string | null
+          coverage?: string | null
+          created_at?: string | null
+          finish?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          name: string
+          price?: number | null
+          product_url?: string | null
+        }
+        Update: {
+          brand_id?: string | null
+          coverage?: string | null
+          created_at?: string | null
+          finish?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          name?: string
+          price?: number | null
+          product_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "foundation_products_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "brands"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foundation_shades: {
+        Row: {
+          created_at: string | null
+          depth_level: number | null
+          hex_color: string | null
+          id: string
+          product_id: string | null
+          shade_name: string
+          undertone: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          depth_level?: number | null
+          hex_color?: string | null
+          id?: string
+          product_id?: string | null
+          shade_name: string
+          undertone?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          depth_level?: number | null
+          hex_color?: string | null
+          id?: string
+          product_id?: string | null
+          shade_name?: string
+          undertone?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "foundation_shades_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "foundation_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age_range: string | null
+          created_at: string | null
+          heritage: string | null
+          id: string
+          skin_concerns: string[] | null
+          skin_type: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          age_range?: string | null
+          created_at?: string | null
+          heritage?: string | null
+          id: string
+          skin_concerns?: string[] | null
+          skin_type?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          age_range?: string | null
+          created_at?: string | null
+          heritage?: string | null
+          id?: string
+          skin_concerns?: string[] | null
+          skin_type?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      scan_sessions: {
+        Row: {
+          analysis_complete: boolean | null
+          analysis_data: Json | null
+          calibration_completed: boolean | null
+          calibration_data: Json | null
+          created_at: string | null
+          id: string
+          photo_urls: string[] | null
+          user_id: string
+        }
+        Insert: {
+          analysis_complete?: boolean | null
+          analysis_data?: Json | null
+          calibration_completed?: boolean | null
+          calibration_data?: Json | null
+          created_at?: string | null
+          id?: string
+          photo_urls?: string[] | null
+          user_id: string
+        }
+        Update: {
+          analysis_complete?: boolean | null
+          analysis_data?: Json | null
+          calibration_completed?: boolean | null
+          calibration_data?: Json | null
+          created_at?: string | null
+          id?: string
+          photo_urls?: string[] | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
